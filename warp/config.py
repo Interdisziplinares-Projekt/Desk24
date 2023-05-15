@@ -5,7 +5,7 @@ __all__ = ['initConfig']
 
 class DefaultSettings(object):
 
-    LANGUAGE_FILE="i18n/en.js"
+    LANGUAGE_FILE="i18n/de.js"
 
     # after how many days force user to re-login (note that it is not a session timeout)
     SESSION_LIFETIME = 1
