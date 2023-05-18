@@ -80,6 +80,23 @@ $ flask run
 
 After that, open http://127.0.0.1:5000 in your browser and log in as `admin` with password `noneshallpass`.
 
+
+
+### Bekannte Probleme
+Sollte die .env variable im code keinenw ert finden kann das daran liegen das flask auf einer zu neuern version ist 
+```bash
+flask --version
+```
+es kann also sein das ihr die version manuell auf 2.2 isntalliueren müsst 
+
+```bash
+(sudo) pip uninstall flask
+pip install flask==2.2
+```
+
+
+
+
 ### SECRET_KEY
 
 For the production environment, **make sure** that you have generated `SECRET_KEY` used for signing cookies. It is defined in `config.py.`
