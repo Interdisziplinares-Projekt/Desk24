@@ -47,4 +47,95 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='materialize/materialize.min.js') }}"></script>
 </body>
+
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+    
+            #supportForm {
+                display: none;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 300px;
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            }
+    
+            #closeBtn {
+                background-color: #f44336;
+                color: white;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                float: right;
+            }
+    
+            #closeBtn:hover {
+                background-color: #da190b;
+            }
+    
+            #successMsg {
+                display: none;
+                color: green;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="supportForm">
+            <button id="closeBtn">X</button>
+            <p id="instructions">Bitte nutzen Sie dieses Formular, um Schäden zu melden und Reparaturen einleiten zu lassen.</p>
+            <p id="successMsg">Der Schaden wurde erfolgreich gemeldet!</p>
+        </div>
+    
+        <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+        <script>
+            /* paste this line in verbatim */
+            window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+            /* customize formbutton below*/     
+            formbutton("create", {
+                action: "https://formspree.io/f/mnqyygnp",
+                title: "Schaden melden",
+                fields: [
+                    { 
+                        type: "number", 
+                        label: "Tischnummer:", 
+                        name: "tableNumber",
+                        required: true,
+                        placeholder: "Tischnummer eingeben"
+                    },
+                    {
+                        type: "textarea",
+                        label: "Beschreiben Sie den Schaden:",
+                        name: "message",
+                        required: true,
+                        placeholder: "Beschreibung hier eingeben",
+                    },
+                    { type: "submit", value: "Meldung absenden" }      
+                ],
+                styles: {
+                    /* Passen Sie die Farben nach Bedarf an */
+                    title: {
+                        backgroundColor: "#3949ab"
+                    },
+                    button: {
+                        backgroundColor: "#3949ab"
+                    }
+                }
+            });
+    
+            document.getElementById("closeBtn").addEventListener("click", function() {
+                document.getElementById("supportForm").style.display = "none";
+            });
+        </script>
+    </body>
+
 </html>
