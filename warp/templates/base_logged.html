@@ -72,7 +72,38 @@
             </ul>
         </div>
     </nav>
+<!-- Der Button, der das Formular anzeigen wird -->
+<button id="supportBtn">Schaden melden</button>
 
+<!-- Ihr Formular -->
+<form id="supportForm" class="support-form-element"
+    action="https://formspree.io/f/mnqyygnp"
+    method="POST"
+>
+    <button id="closeBtn" type="button">X</button>
+    <div class="form-title">Schaden melden</div>
+    <label>
+        Tischnummer:
+        <input type="number" name="tableNumber" placeholder="Tischnummer eingeben" required>
+    </label>
+    <label>
+        Beschreiben Sie den Schaden:
+        <textarea name="message" placeholder="Beschreibung hier eingeben" required></textarea>
+    </label>
+    <button type="submit">Meldung absenden</button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#supportBtn").click(function(){
+            $("#supportForm").css("display", "block");
+        });
+        $("#closeBtn").click(function(){
+            $("#supportForm").css("display", "none");
+        });
+    });
+</script>
 {% endblock %}
 
 

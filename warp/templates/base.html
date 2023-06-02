@@ -14,7 +14,7 @@
             font-weight: 400;
             src: url('{{ url_for('static', filename='material_icons/MaterialIcons-Regular_v109.woff') }}') format('woff'),
                 url('{{ url_for('static', filename='material_icons/MaterialIcons-Regular_v109.woff2') }}') format('woff2');
-            }
+        }
 
         @font-face {
             font-family: 'Material Icons Outlined';
@@ -22,8 +22,120 @@
             font-weight: 400;
             src: url('{{ url_for('static', filename='material_icons/MaterialIcons-Outlined_v81.woff') }}') format('woff'),
                 url('{{ url_for('static', filename='material_icons/MaterialIcons-Outlined_v81.woff2') }}') format('woff2');
-            }
+        }
+
+        /* Stile für das Formular und den Button */
+        #supportForm {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 280px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-top-left-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .support-form-element label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .support-form-element input, .support-form-element textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 0;
+            border: 1px solid #ccc;
+            transition: border 0.3s ease;
+        }
+
+        .support-form-element input:focus, .support-form-element textarea:focus {
+            border: 1px solid #3949ab;
+            outline: none;
+        }
+
+        .support-form-element button[type="submit"] {
+            background-color: #3949ab;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 0;
+        }
+
+        .support-form-element button[type="submit"]:hover {
+            background-color: #303f9f;
+        }
+
+        #closeBtn {
+            background-color: #ffffff;
+            color: #3949ab;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50%;
+            line-height: 1;
+        }
+
+        #closeBtn:hover {
+            background-color: #f0f0f0;
+        }
+
+        #supportBtn {
+            position: fixed;
+            top: 50%;
+            right: -60px;
+            transform: translateY(-50%) rotate(-90deg);
+            background-color: #3949ab;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 0;
+            z-index: 9999;
+        }
+
+        #supportBtn:hover {
+            background-color: #303f9f;
+        }
+
+        /* Styling für das Beschreibungsfeld */
+        .support-form-element textarea[name="message"] {
+            resize: none;
+            height: 120px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            color: #000000;
+            font-size: 16px;
+            font-weight: normal;
+            transition: border 0.1s ease;
+        }
+
+        .support-form-element textarea[name="message"]:focus {
+            border: 2px solid #3949ab;
+        }
+
+        /* Styling für den Titel */
+        .form-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #3949ab;
+            margin-bottom: 10px;
+        }
     </style>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='material_icons/material_icons.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='materialize/materialize.min.css') }}"  media="screen,projection"/>
 
@@ -42,100 +154,9 @@
     {% block overlays %}{% endblock %}
 
     <div class="warp-container">
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
 
     <script type="text/javascript" src="{{ url_for('static', filename='materialize/materialize.min.js') }}"></script>
 </body>
-
-<html>
-    <head>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
-    
-            #supportForm {
-                display: none;
-                position: fixed;
-                bottom: 0;
-                right: 0;
-                width: 300px;
-                background-color: #f8f9fa;
-                padding: 20px;
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.25);
-            }
-    
-            #closeBtn {
-                background-color: #f44336;
-                color: white;
-                padding: 5px 10px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                float: right;
-            }
-    
-            #closeBtn:hover {
-                background-color: #da190b;
-            }
-    
-            #successMsg {
-                display: none;
-                color: green;
-            }
-        </style>
-    </head>
-    
-    <body>
-        <div id="supportForm">
-            <button id="closeBtn">X</button>
-            <p id="instructions">Bitte nutzen Sie dieses Formular, um Schäden zu melden und Reparaturen einleiten zu lassen.</p>
-            <p id="successMsg">Der Schaden wurde erfolgreich gemeldet!</p>
-        </div>
-    
-        <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
-        <script>
-            /* paste this line in verbatim */
-            window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
-            /* customize formbutton below*/     
-            formbutton("create", {
-                action: "https://formspree.io/f/mnqyygnp",
-                title: "Schaden melden",
-                fields: [
-                    { 
-                        type: "number", 
-                        label: "Tischnummer:", 
-                        name: "tableNumber",
-                        required: true,
-                        placeholder: "Tischnummer eingeben"
-                    },
-                    {
-                        type: "textarea",
-                        label: "Beschreiben Sie den Schaden:",
-                        name: "message",
-                        required: true,
-                        placeholder: "Beschreibung hier eingeben",
-                    },
-                    { type: "submit", value: "Meldung absenden" }      
-                ],
-                styles: {
-                    /* Passen Sie die Farben nach Bedarf an */
-                    title: {
-                        backgroundColor: "#3949ab"
-                    },
-                    button: {
-                        backgroundColor: "#3949ab"
-                    }
-                }
-            });
-    
-            document.getElementById("closeBtn").addEventListener("click", function() {
-                document.getElementById("supportForm").style.display = "none";
-            });
-        </script>
-    </body>
-
 </html>
