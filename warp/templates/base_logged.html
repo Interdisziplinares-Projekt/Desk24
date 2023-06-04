@@ -90,6 +90,8 @@
         Beschreiben Sie den Schaden:
         <textarea name="message" placeholder="Beschreibung hier eingeben" required></textarea>
     </label>
+    <!-- Verstecktes Feld für den Benutzernamen -->
+    <input type="hidden" name="username" value="{{ g.login }}">
     <button type="submit">Meldung absenden</button>
 </form>
 
