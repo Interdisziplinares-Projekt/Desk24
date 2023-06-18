@@ -48,7 +48,9 @@ def headerDataInit():
 
 @bp.route("/")
 def index():
-    return flask.render_template('index.html')
+    current_booking = get_current_booking()
+    available_seats = get_available_seats()
+    return flask.render_template('index.html',current_booking=current_booking,available_seats=available_seats)
 
 @bp.route("/bookings/<string:report>")
 @bp.route("/bookings", defaults={"report": "" })
@@ -190,3 +192,20 @@ def zoneModify(zid):
     return flask.render_template('zone_modify.html',
                     zid = zid,
                     returnURL = returnURL)
+
+
+
+
+def get_current_booking():
+    # Implementiere deine Logik, um das aktuelle Booking abzurufen
+    return {
+        "seat": "EG/12/AP02",
+        "time": "10:00 - 17:00 Uhr"
+    }
+
+def get_available_seats():
+    # Implementiere deine Logik, um die Anzahl der verfügbaren Plätze für den heutigen Tag abzurufen
+    return {
+        "EG": 27,
+        "OG": 17
+    }
