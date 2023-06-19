@@ -218,11 +218,15 @@ def get_current_booking():
 
 
 def get_current_booking():
+    today = datetime.datetime.now().date()
+    start_of_day = datetime.datetime.combine(today, datetime.time.min).timestamp()
+    end_of_day = datetime.datetime.combine(today, datetime.time.max).timestamp()
+
     current_booking = Book.select(Seat.name.alias('seat'), Book.fromts, Book.tots) \
-                          .join(Seat, on=(Book.sid == Seat.id)) \
-                          .where(Book.fromts >= datetime.datetime.now().timestamp()) \
-                          .order_by(Book.fromts) \
-                          .first()
+                      .join(Seat, on=(Book.sid == Seat.id)) \
+                      .where((Book.fromts >= start_of_day) & (Book.fromts <= end_of_day)) \
+                      .order_by(Book.fromts) \
+                      .first()
 
     if current_booking:
         seat_name = current_booking.get('seat')
