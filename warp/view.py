@@ -234,6 +234,7 @@ def get_current_booking():
         return None
 
 
+# Zonen namen anpassen bei änderung
 def get_available_seats():
     today = datetime.datetime.now().date()
 
