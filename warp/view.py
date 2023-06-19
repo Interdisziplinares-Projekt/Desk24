@@ -196,14 +196,14 @@ def zoneModify(zid):
 
 
 
-from datetime import datetime
+import datetime
 from peewee import fn, JOIN
 
 
 def get_current_booking():
     current_booking = Book.select(Seat.name.alias('seat'), Book.fromts, Book.tots) \
                           .join(Seat, on=(Book.sid == Seat.id)) \
-                          .where(Book.fromts >= datetime.now().timestamp()) \
+                          .where(Book.fromts >= datetime.datetime.now().timestamp()) \
                           .order_by(Book.fromts) \
                           .first()
 
@@ -217,24 +217,69 @@ def get_current_booking():
         return None
 
 
-# Anpassen wenn die Zonen namen geändert werden
+def get_current_booking():
+    current_booking = Book.select(Seat.name.alias('seat'), Book.fromts, Book.tots) \
+                          .join(Seat, on=(Book.sid == Seat.id)) \
+                          .where(Book.fromts >= datetime.datetime.now().timestamp()) \
+                          .order_by(Book.fromts) \
+                          .first()
+
+    if current_booking:
+        seat_name = current_booking.get('seat')
+        from_ts = current_booking.get('fromts')
+        to_ts = current_booking.get('tots')
+        time = f"{utils.formatTimestamp(from_ts)} - {utils.formatTimestamp(to_ts)} Uhr"
+        return {"seat": seat_name, "time": time}
+    else:
+        return None
+
+
 def get_available_seats():
+    today = datetime.datetime.now().date()
+
     seatsEG = (
         Seat
-        .select(fn.COUNT(Seat.id))
+        .select(fn.count(Seat.id))
         .join(Zone, on=(Seat.zid == Zone.id))
         .where(Zone.name == 'Etage 1')
-        .scalar()
+        .scalar(as_tuple=True)[0]
     )
     seatsOG = (
         Seat
-        .select(fn.COUNT(Seat.id))
+        .select(fn.count(Seat.id))
         .join(Zone, on=(Seat.zid == Zone.id))
         .where(Zone.name == 'Etage 2')
-        .scalar()
+        .scalar(as_tuple=True)[0]
     )
 
+    # Gebuchte Plätze für heute abrufen
+    bookedEG = (
+        Seat
+        .select(Seat.id, Book.fromts)
+        .join(Book, on=(Seat.id == Book.sid))
+        .join(Zone, on=(Seat.zid == Zone.id))
+        .where(Zone.name == 'Etage 1')
+        .dicts()
+    )
+    bookedOG = (
+        Seat
+        .select(Seat.id, Book.fromts)
+        .join(Book, on=(Seat.id == Book.sid))
+        .join(Zone, on=(Seat.zid == Zone.id))
+        .where(Zone.name == 'Etage 2')
+        .dicts()
+    )
+
+    # Filtern der gebuchten Plätze für heute
+    bookedEG_today = sum(1 for booking in bookedEG if datetime.datetime.fromtimestamp(booking['fromts']).date() == today)
+    bookedOG_today = sum(1 for booking in bookedOG if datetime.datetime.fromtimestamp(booking['fromts']).date() == today)
+
+    # Verfügbare Sitze berechnen
+    availableEG = seatsEG - bookedEG_today
+    availableOG = seatsOG - bookedOG_today
+
     return {
-        "EG": seatsEG,
-        "OG": seatsOG
+        "EG": availableEG,
+        "OG": availableOG
     }
+
