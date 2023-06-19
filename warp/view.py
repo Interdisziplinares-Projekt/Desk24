@@ -200,21 +200,7 @@ import datetime
 from peewee import fn, JOIN
 
 
-def get_current_booking():
-    current_booking = Book.select(Seat.name.alias('seat'), Book.fromts, Book.tots) \
-                          .join(Seat, on=(Book.sid == Seat.id)) \
-                          .where(Book.fromts >= datetime.datetime.now().timestamp()) \
-                          .order_by(Book.fromts) \
-                          .first()
 
-    if current_booking:
-        seat_name = current_booking.get('seat')
-        from_ts = current_booking.get('fromts')
-        to_ts = current_booking.get('tots')
-        time = f"{utils.formatTimestamp(from_ts)} - {utils.formatTimestamp(to_ts)} Uhr"
-        return {"seat": seat_name, "time": time}
-    else:
-        return None
 
 
 def get_current_booking():
