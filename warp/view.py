@@ -1,4 +1,5 @@
 import flask
+import peewee
 
 from warp.db import *
 from . import utils
@@ -195,17 +196,45 @@ def zoneModify(zid):
 
 
 
+from datetime import datetime
+from peewee import fn, JOIN
+
 
 def get_current_booking():
-    # Implementiere deine Logik, um das aktuelle Booking abzurufen
-    return {
-        "seat": "EG/12/AP02",
-        "time": "10:00 - 17:00 Uhr"
-    }
+    current_booking = Book.select(Seat.name.alias('seat'), Book.fromts, Book.tots) \
+                          .join(Seat, on=(Book.sid == Seat.id)) \
+                          .where(Book.fromts >= datetime.now().timestamp()) \
+                          .order_by(Book.fromts) \
+                          .first()
 
+    if current_booking:
+        seat_name = current_booking.get('seat')
+        from_ts = current_booking.get('fromts')
+        to_ts = current_booking.get('tots')
+        time = f"{utils.formatTimestamp(from_ts)} - {utils.formatTimestamp(to_ts)} Uhr"
+        return {"seat": seat_name, "time": time}
+    else:
+        return None
+
+
+# Anpassen wenn die Zonen namen geändert werden
 def get_available_seats():
-    # Implementiere deine Logik, um die Anzahl der verfügbaren Plätze für den heutigen Tag abzurufen
+    seatsEG = (
+        Seat
+        .select(fn.COUNT(Seat.id))
+        .join(Zone, on=(Seat.zid == Zone.id))
+        .where(Zone.name == 'Etage 1')
+        .scalar()
+    )
+    seatsOG = (
+        Seat
+        .select(fn.COUNT(Seat.id))
+        .join(Zone, on=(Seat.zid == Zone.id))
+        .where(Zone.name == 'Etage 2')
+        .scalar()
+    )
+
     return {
-        "EG": 27,
-        "OG": 17
+        "EG": seatsEG,
+        "OG": seatsOG
     }
