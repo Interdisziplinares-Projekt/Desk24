@@ -1,4 +1,5 @@
 # Desk24
+Alex Daubert
 
 ## Deployment
 
@@ -79,6 +80,28 @@ $ flask run
 ```
 
 After that, open http://127.0.0.1:5000 in your browser and log in as `admin` with password `noneshallpass`.
+
+
+
+### Bekannte Probleme
+Sollte die .env variable im code keinen wert finden kann das daran liegen das flask auf einer zu neuern version ist und node nicht aktuell genug ist
+```bash
+node --version
+flask --version
+```
+Sollten mit diesen befehelen herauskommen das node unter 14.0 und flask 2.3 ist müsst ihr ein paar sachen anpasssen
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm list-remote
+nvm install {latest-lts-version}
+
+(sudo) pip uninstall flask
+pip install flask==2.2
+```
+
+
+
 
 ### SECRET_KEY
 

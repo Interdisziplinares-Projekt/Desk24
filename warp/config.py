@@ -5,14 +5,14 @@ __all__ = ['initConfig']
 
 class DefaultSettings(object):
 
-    LANGUAGE_FILE="i18n/en.js"
+    LANGUAGE_FILE="i18n/de.js"
 
     # after how many days force user to re-login (note that it is not a session timeout)
     SESSION_LIFETIME = 1
 
     # for how many weeks in advance users can book a seat
     # (after the current week)
-    WEEKS_IN_ADVANCE = 1
+    WEEKS_IN_ADVANCE = 2
 
     MAX_CONTENT_LENGTH = 5 * 1024 * 1024
 

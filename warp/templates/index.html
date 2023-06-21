@@ -8,10 +8,123 @@
 {% block content %}
     {{ super() }}
 
-    <div class="index_container">
-        <div>
-        <img src="{{ url_for('static', filename='images/logo_desk24_schwarz.png') }}">
-        </div>
-    </div>
+<style>
+.cell{
+	border-radius: 6px  6px 6px 6px; 
+	outline: 1px solid rgb(0,0,0); 
+	overflow: hidden; 
+	position: relative; 
+	box-shadow: 3px 4px 0px rgba(0,0,0,0.298);
+	margin: auto 10px;
+	width: 300px;
+	height: 300px;
+}
+.box{
+	background-color: 
+	rgb(57,73,171); 
+	position: relative; 
+	overflow: hidden; 
+	display: flex; 
+	flex-direction: column;
+	flex-grow: 1;
+	margin: 0px auto;
+	height: auto;
+}
+.box2{
+	position: relative;
+	margin: 0px 4px;
+	display: flex;
+	flex-direction: column;
+}
+.titel{
+	font-size: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(255,255,255);
+	font: 700 20px/3.2 "Roboto", Helvetica, Arial, serif;
+	margin: 0px auto;
+}
+.subtitel{
+	font-size: 16px; 
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	text-align:center;
+	height: 10px;
+}
+
+.intext1{
+	color: rgb(255,109,0);
+	font: 400 30px/0.83 "Roboto", Helvetica, Arial, serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	magin: 0px 0px 0px;
+	position: relative;
+	letter-spacing: 0px;
+	height: 15px;	
+}
+
+.intext2{
+	color: rgb(255,109,0);
+	font: 400 40px/1.6 "Roboto", Helvetica, Arial, serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	magin: 0px auto;
+	position: relative;
+	height: 15px;
+}
+.hour{
+	font: 400 30px/0.83 "Roboto", Helvetica, Arial, serif;
+	color: rgb(255,109,0);
+	font: 400 15px/1 "Roboto", Helvetica, Arial, serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	magin: 0px 0px 0px;
+	position: relative;
+	letter-spacing: 0px;
+	height: 10px;
+}
+</style>
+<div class="index_container">
+	<div class="cell">
+		<div class="box">
+			<h3 class="titel">Meine Buchungen</h3>
+		</div>
+		<div class="box2">
+			<h3 class="subtitel">Nächste Buchung:</h3>
+			<div style="margin: 0px 0px">
+				<h1 class="intext1">{{ current_booking.seat }}</h1>
+				<h5 class="hour">{{ current_booking.time }}</h5>
+			</div>
+		</div>    
+	</div>
+	<div class="cell">
+		<div class="box">
+			<h3 class="titel">Ergeschoss</h3>
+		</div>
+		<div class="box2">
+			<h3 class="subtitel">Heute sind noch</h3>
+			<h1 class="intext2">{{ available_seats.EG }}</h1>
+			<h5>Plätze frei</h5>
+		</div>    
+	</div>
+	<div class="cell">
+		<div class="box">
+			<h3 class="titel">Obergeschoss</h3>
+		</div>
+		<div class="box2">
+			<h3 class="subtitel">Heute sind noch</h3>
+			<h1 class="intext2">{{ available_seats.OG }}</h1>
+			<h5>Plätze frei</h5>
+		</div>    
+	</div>
+</div>
 
 {% endblock %}

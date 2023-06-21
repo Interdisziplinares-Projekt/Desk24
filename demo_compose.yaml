@@ -12,7 +12,7 @@ services:
       WARP_DATABASE: "postgresql://postgres:postgres_password@warp-demo-db:5432/postgres"
       WARP_SECRET_KEY: 'mysecretkey'
       WARP_DATABASE_INIT_SCRIPT: '["sql/schema.sql","sql/sample_data.sql"]'
-      WARP_LANGUAGE_FILE: 'i18n/en.js'
+      WARP_LANGUAGE_FILE: 'i18n/de.js'
   warp-demo-nginx:
     image: nginx
     depends_on:
