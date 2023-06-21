@@ -43,12 +43,14 @@ WORKDIR /opt/Desk24
 RUN \
     --mount=type=bind,from=compile-image,source=/opt/Desk24/debs,target=./debs \
     dpkg -i debs/*.deb
-
+# COPY --from=compile-image /opt/Desk24/debs ./debs
+# RUN dpkg -i debs/*.deb
 
 RUN \
     --mount=type=bind,from=compile-image,source=/opt/Desk24/wheel,target=./wheel \
     pip install --no-index wheel/*.whl
-
+# COPY --from=compile-image /opt/Desk24/wheel ./wheel
+# RUN pip install --no-index wheel/*.whl
 
 COPY --from=compile-image /opt/Desk24/desk24/static ./static
 COPY res/desk24_uwsgi.ini .
