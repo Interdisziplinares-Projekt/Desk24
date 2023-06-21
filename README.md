@@ -68,7 +68,7 @@ npm run build
 popd
 
 # setup Flask and database URL
-export FLASK_APP=warp
+export FLASK_APP=desk24
 export FLASK_ENV=development
 export WARP_DATABASE=postgresql://warp:warp@localhost:5432/warp
 
