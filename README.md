@@ -19,7 +19,7 @@ cd warp
 (sudo )docker compose -f demo_compose.yaml up
 ```
 
-Danach öffnen Sie http://127.0.0.1:8080 in Ihrem Browser und melden sich als admin mit dem Passwort noneshallpass an.
+Danach öffnen Sie http://127.0.0.1:80 in Ihrem Browser und melden sich als admin mit dem Passwort noneshallpass an.
 
 ### Entwicklung
 
