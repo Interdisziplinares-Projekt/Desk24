@@ -13,7 +13,7 @@ const htmlOutputDir = path.join(desk24Dir,'templates/headers');
 async function generateConfig() {
 
   async function removeFiles(dir) {
-
+    // Entfernt alle Dateien in einem Verzeichnis
     let p = [];
     try {
       const files = await fsp.readdir(dir,{withFileTypes:true});
@@ -31,14 +31,14 @@ async function generateConfig() {
     return Promise.all(p);
   }
 
-  // do not use {clean: true} option in webpack config
-  // as we write from multiple entries to the same dir
+
   await Promise.all([
     removeFiles(outputDir),
     removeFiles(htmlOutputDir)
   ]);
 
   function createHtmlWebpackPlugin(chunkName) {
+    // Erstellt eine Instanz des HtmlWebpackPlugin für einen bestimmten Chunk
 
     return new HtmlWebpackPlugin({
       filename: path.join(htmlOutputDir, chunkName+'.html'),
@@ -148,7 +148,7 @@ async function generateConfig() {
   ]
 
   async function fillConfig(config,directory) {
-
+    // Füllt die Konfiguration mit Eingängen aus einem Verzeichnis
     directory = path.resolve(directory);
 
     try {

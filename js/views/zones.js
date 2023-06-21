@@ -7,7 +7,7 @@ import {TabulatorFull as Tabulator} from 'tabulator-tables';
 import "./css/tabulator/tabulator_materialize.scss";
 
 document.addEventListener("DOMContentLoaded", function(e) {
-
+    // Funktion zur Formatierung des Icons in der Tabelle
     var iconFormater = function(cell, formatterParams, onRendered) {
         var icon = formatterParams.icon || "warning";
         var colorClass = formatterParams.colorClass || "";
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             })
             .then(() => table.replaceData() );
     }
-
+// Funktion zur Erzeugung der Klick-Funktion für Zellen
     var clickFuncFactory = function(targetURL) {
         return function(e,cell) {
             let zid = cell.getRow().getData()['id'];
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
+    // Hinzufügen des Klick-Events für "Hinzufügen/Bearbeiten"-Button
     var addZoneBtn = document.getElementById('add_zone_btn');
     addZoneBtn.addEventListener('click', addEditClicked);
 
@@ -90,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     var errorMsg = document.getElementById('error_message');
     var saveBtn = document.getElementById('edit_modal_save_btn');
     var deleteBtn = document.getElementById('edit_modal_delete_btn');
-
+    // Funktion zur Anzeige des Bearbeitungsdialogs
     showEditDialog = function(id,name,zoneGroup) {
 
         var editModal = M.Modal.getInstance(editModalEl);
