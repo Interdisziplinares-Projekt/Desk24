@@ -14,7 +14,7 @@ Die bevorzugte Methode zur Bereitstellung besteht darin, sie über Docker auszuf
 Terminal: 
 ``` bash
 
-git clone https://github.com/sebo-b/warp.git
+git clone https://github.com/Interdisziplinares-Projekt/Desk24.git
 cd warp
 docker compose -f demo_compose.yaml up
 ```

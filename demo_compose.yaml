@@ -1,22 +1,22 @@
 version: "3"
 services:
-  warp-demo-db:
+  desk24-db:
     image: postgres
     environment:
       POSTGRES_PASSWORD: 'postgres_password'
-  warp-demo-wsgi:
+  desk24-wsgi:
     build: .
     depends_on:
-    - warp-demo-db
+    - desk24-db
     environment:
-      WARP_DATABASE: "postgresql://postgres:postgres_password@warp-demo-db:5432/postgres"
+      WARP_DATABASE: "postgresql://postgres:postgres_password@desk24-db:5432/postgres"
       WARP_SECRET_KEY: 'mysecretkey'
       WARP_DATABASE_INIT_SCRIPT: '["sql/schema.sql","sql/sample_data.sql"]'
       WARP_LANGUAGE_FILE: 'i18n/de.js'
-  warp-demo-nginx:
+  desk24-nginx:
     image: nginx
     depends_on:
-    - warp-demo-wsgi
+    - desk24-wsgi
     volumes:
       - ./res/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:

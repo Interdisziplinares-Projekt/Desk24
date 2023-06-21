@@ -33,7 +33,7 @@ COPY requirements.txt ./
 RUN pip wheel -w wheel -r requirements.txt
 
 # build Desk24
-COPY warp ./warp
+COPY desk24 ./desk24
 COPY setup.py MANIFEST.in ./
 RUN python setup.py bdist_wheel -d wheel
 
@@ -52,8 +52,8 @@ RUN \
 # COPY --from=compile-image /opt/Desk24/wheel ./wheel
 # RUN pip install --no-index wheel/*.whl
 
-COPY --from=compile-image /opt/Desk24/warp/static ./static
-COPY res/warp_uwsgi.ini .
+COPY --from=compile-image /opt/Desk24/desk24/static ./static
+COPY res/desk24_uwsgi.ini .
 
 EXPOSE 8000/tcp
-ENTRYPOINT ["uwsgi", "warp_uwsgi.ini"]
+ENTRYPOINT ["uwsgi", "desk24_uwsgi.ini"]
