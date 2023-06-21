@@ -1,6 +1,6 @@
 import flask
 from werkzeug.middleware.proxy_fix import ProxyFix
-from warp.config import *
+from desk24.config import *
 
 def create_app():
 

@@ -9,5 +9,5 @@ __pycache__
 .idea
 node_modules/
 *.pyc
-/warp/templates/headers/
-/warp/static/dist/
+/desk24/templates/headers/
+/desk24/static/dist/

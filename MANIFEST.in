@@ -1,3 +1,3 @@
-graft warp/templates
-graft warp/static
-graft warp/sql
+graft desk24/templates
+graft desk24/static
+graft desk24/sql
