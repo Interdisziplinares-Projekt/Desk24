@@ -6,11 +6,10 @@ INSERT INTO zone (id,zone_group,name) VALUES (1,1,'Etage 1');
 INSERT INTO zone (id,zone_group,name) VALUES (2,1,'Etage 2');
 
 
--- fix PK sequence
 SELECT pg_catalog.setval(pg_get_serial_sequence('zone', 'id'), (SELECT MAX(id) FROM zone));
 
 
---INSERT INTO groups VALUES ('group_1a','user1');
+
 
 INSERT INTO zone_assign VALUES (1,'user1',20);
 INSERT INTO zone_assign VALUES (2,'user1',20);

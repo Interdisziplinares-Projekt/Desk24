@@ -1,4 +1,3 @@
-
 CREATE TABLE blobs (
     id SERIAL PRIMARY KEY,
     mimetype text NOT NULL,
@@ -6,7 +5,7 @@ CREATE TABLE blobs (
     etag integer NOT NULL
 );
 
--- TODO_X type limit
+
 CREATE TABLE users (
     login text PRIMARY KEY,
     password text,
@@ -14,7 +13,6 @@ CREATE TABLE users (
     account_type integer NOT NULL
     );
 
--- create initial admin with password 'noneshallpass'
 INSERT INTO users VALUES ('admin','pbkdf2:sha256:260000$LdN4KNf6xzb0XlSu$810ca4acafd3b6955e6ebc39d2edafd582c8020ab87fd56e3cede1bfebb7df03','Admin',10);
 
 CREATE INDEX users_account_type_idx ON users(account_type);
@@ -35,7 +33,7 @@ CREATE TABLE zone (
     FOREIGN KEY (iid) REFERENCES blobs(id) ON DELETE SET NULL
     );
 
--- TODO_X zone_role limit
+
 CREATE TABLE zone_assign (
     zid integer NOT NULL,
     login text NOT NULL,
@@ -101,18 +99,6 @@ CREATE MATERIALIZED VIEW user_to_zone_roles ("login",zid,zone_role) AS
     where account_type < 100
     group by zid,login;
 
--- CREATE MATERIALIZED VIEW user_to_zone_roles (login,zid,zone_role) AS
--- with recursive user_group(login,"group") as (
---   select login,login from users
---   where account_type < 100
---   union
---   select u.login,g."group" from user_group u
---   join "groups" g on g.login = u."group"
--- )
--- select ug."login", za.zid, MIN(za.zone_role) from user_group ug
--- join zone_assign za on za.login = ug."group"
--- group by ug."login", za.zid;
-
 CREATE UNIQUE INDEX user_to_zone_roles_idx
 ON user_to_zone_roles("login",zid,zone_role);
 
@@ -138,24 +124,6 @@ CREATE TRIGGER groups_update
 AFTER INSERT OR UPDATE OR DELETE ON groups
 FOR STATEMENT
 EXECUTE PROCEDURE update_user_to_zone_roles();
-
-
--- with recursive user_group(login,"group") as (
---   select login,login from users
---   where account_type < 100
---   union
---   select u.login,g."group" from user_group u
---   join "groups" g on g.login = u."group"
---
--- )
--- select * from user_group;
-
--- CREATE VIEW user_to_zone_roles (login,zid,zone_role) AS
--- SELECT u.login,za.zid,MIN(za.zone_role) FROM users u
--- LEFT JOIN "groups" g ON g.login = u.login
--- JOIN zone_assign za ON za.login = g."group" OR za.login = u.login
--- WHERE u.account_type < 100
--- GROUP BY u.login, za.zid
 
 
 CREATE FUNCTION book_overlap_insert()

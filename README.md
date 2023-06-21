@@ -16,7 +16,7 @@ Terminal:
 
 git clone https://github.com/Interdisziplinares-Projekt/Desk24.git
 cd warp
-docker compose -f demo_compose.yaml up
+(sudo )docker compose -f demo_compose.yaml up
 ```
 
 Danach öffnen Sie http://127.0.0.1:8080 in Ihrem Browser und melden sich als admin mit dem Passwort noneshallpass an.
