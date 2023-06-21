@@ -200,9 +200,7 @@ import datetime
 from peewee import fn, JOIN
 
 
-
-
-
+# Aktuelle buchung zurückgeben
 def get_current_booking():
     today = datetime.datetime.now().date()
     start_of_day = datetime.datetime.combine(today, datetime.time.min).timestamp()
