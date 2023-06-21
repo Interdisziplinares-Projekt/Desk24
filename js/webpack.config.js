@@ -6,9 +6,9 @@ const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const warpDir = path.resolve(__dirname, '../warp');
-const outputDir = path.join(warpDir,'static/dist');
-const htmlOutputDir = path.join(warpDir,'templates/headers');
+const desk24Dir = path.resolve(__dirname, '../desk24');
+const outputDir = path.join(desk24Dir,'static/dist');
+const htmlOutputDir = path.join(desk24Dir,'templates/headers');
 
 async function generateConfig() {
 
