@@ -26,6 +26,7 @@
 
     <nav>
         <div class="nav-wrapper">
+          <!--Hier wird das Logo ausgetauscht-->
             <div class="center"><img class="logo" src="{{ url_for('static', filename='images/logo_desk24.png') }}"></div>
         </div>
     </nav>
@@ -49,6 +50,17 @@
           </div>
         </div>
 
+       <!-- Die Checkbox für die AGBs und Datenschutzerklärung !-->
+        <div class="col s12">
+          <label>
+            <input type="checkbox" id="agb_privacy" name="agb_privacy">
+            <span> Ich akzeptiere die AGBs und <a href="https://janripken.atlassian.net/wiki/spaces/Projektdok/pages/24739856/Datenschutzerkl+rung"> Datenschutzerklärung</a> </span>
+            </label>
+        </div>
+
+        <br>
+        <br>
+        
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             {% for message in messages %}
