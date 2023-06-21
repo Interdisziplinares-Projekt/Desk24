@@ -157,6 +157,8 @@ def listW(report = False):      # list is a built-in type
         if lastPage is not None:
             res["last_page"] = lastPage
 
+        
+
         for row in query:
 
             d = {
