@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     table = new Tabulator("#zone_assignees_table", {
-        height: "2000px",   //this will be limited by maxHeight, we need to provide height
-        maxHeight:"100%",   //to make paginationSize work correctly
+        height: "2000px",   
+        maxHeight:"100%",   
         langs: warpGlobals.i18n.tabulatorLangs,
         ajaxURL: window.warpGlobals.URLs['zoneMembers'],
         ajaxParams:{zid:window.warpGlobals.zid},

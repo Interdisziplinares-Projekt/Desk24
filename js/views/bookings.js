@@ -206,8 +206,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     var table = new Tabulator("#reportTable", {
-        height: "3000px",   //this will be limited by maxHeight, we need to provide height
-        maxHeight:"100%",   //to make paginationSize work correctly
+        height: "3000px",   
+        maxHeight:"100%",   
         ajaxURL: window.warpGlobals.URLs['bookingsReport'],
         index:"id",
         layout:"fitDataFill",
@@ -224,12 +224,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         columns: columns,
         initialSort: initialSort,
         initialHeaderFilter: initialHeaderFilter
-/*        persistence: {
-            sort: true,
-        },
-        persistenceWriterFunc:persistenceWriterFunc,
-        persistenceReaderFunc:persistenceReaderFunc
-*/
+
     });
 
     if (window.warpGlobals['report']) {

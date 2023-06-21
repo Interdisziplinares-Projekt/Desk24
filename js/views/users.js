@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     var table = new Tabulator("#usersTable", {
-        height: "3000px",   //this will be limited by maxHeight, we need to provide height
-        maxHeight:"100%",   //to make paginationSize work correctly
+        height: "3000px",   
+        maxHeight:"100%",   
         ajaxURL: window.warpGlobals.URLs['usersList'],
         langs: warpGlobals.i18n.tabulatorLangs,
         index:"login",
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             {column:"name", dir:"asc"}
         ],
         initialFilter: [
-            {field:"account_type", type:"<", value:100}     // don't show groups
+            {field:"account_type", type:"<", value:100}     
         ]
     });
 
@@ -90,8 +90,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
             editModal = M.Modal.init(editModalEl, {
                 onCloseEnd: function() {
-                    // we need to tear down materialize select and recreate it
-                    // as there is no (exposed) API to select the option
                     let accountTypeSelect = M.FormSelect.getInstance(accountTypeSelectEl);
                     if (accountTypeSelect) {
                         accountTypeSelect.destroy();
@@ -201,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                         table.replaceData();
                         editModal.close();
                     }).catch( (value) => {
-                        if (value.status == 406) { // past bookings
+                        if (value.status == 406) { 
                             var modalOptions = {
                                 buttons: [ {id: 3, text: TR("btn.YES, I'M SURE")}, {id: 2, text: TR("btn.No")} ],
                                 onButtonHook: modalBtnClicked
@@ -275,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         let autocompletePromise, chipsDataPromise = null;
         if (addToGroup) {
             autocompletePromise = addToGroup.options.autocompleteOptions.data;
-            addToGroup.destroy(); // we have to recreate chips instance to clean up all chips inside
+            addToGroup.destroy(); 
         }
         else {
             autocompletePromise = Utils.xhr.post(
@@ -302,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             limit: Infinity,
             onChipAdd: function(chip) {
 
-                let i = this.chipsData.length - 1;  // chips are always pushed
+                let i = this.chipsData.length - 1;  
                 let t = this.chipsData[i].tag;
 
                 if (!(t in this.autocomplete.options.data)) {

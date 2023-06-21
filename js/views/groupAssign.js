@@ -62,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     var table = new Tabulator("#groupMembersTable", {
-        height: "2000px",   //this will be limited by maxHeight, we need to provide height
-        maxHeight:"100%",   //to make paginationSize work correctly
+        height: "2000px",   
+        maxHeight:"100%",   
         langs: warpGlobals.i18n.tabulatorLangs,
         ajaxURL: window.warpGlobals.URLs['groupMemberList'],
         ajaxParams:{groupLogin:window.warpGlobals.groupLogin},

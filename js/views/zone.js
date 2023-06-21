@@ -52,7 +52,7 @@ function initSlider() {
 
     var slider = document.getElementById('timeslider');
     noUiSlider.create(slider, {
-        start: window.warpGlobals['defaultSelectedDates'].slider,    //this later on can be anyway overwritten from session storage
+        start: window.warpGlobals['defaultSelectedDates'].slider,   
         connect: true,
         behaviour: 'drag',
         step: 15*60,
@@ -208,13 +208,13 @@ function initAssignedSeatsModal(seat) {
     var chips = M.Chips.getInstance(chipsEl);
     if (chips) {
         chipsOptions = chips.options;
-        chips.destroy(); // we have to recreate chips instance to clean up all chips inside
+        chips.destroy(); 
     }
     else {
 
         var onChipApp = function(chip) {
 
-            var i = this.chipsData.length - 1;  // chips are always pushed
+            var i = this.chipsData.length - 1;  
             var t = this.chipsData[i].tag;
 
             if (!(t in this.autocomplete.options.data)) {
@@ -257,16 +257,12 @@ function initActionMenu(seatFactory) {
     if (window.warpGlobals.isZoneViewer)
         return;
 
-    var seat = null;    // used for passing seat to btn click events (closure)
-                        // it is set at the end of seatFactory.on('click'
-                        // it is used in actionBtn click event
-                        // and it is reset (to release reference) in actionModal onCloseEnd event
+    var seat = null;    
 
-    // init modal
     var actionEl = document.getElementById('action_modal');
     var actionModal =  M.Modal.init(actionEl);
 
-    // register hooks
+ 
     var actionBtns = document.getElementsByClassName('zone_action_btn');
 
     seatFactory.on( 'click', function() {
@@ -359,8 +355,6 @@ function initActionMenu(seatFactory) {
                 btn.style.display = "none";
         }
 
-        //var actionElTitle = document.getElementById('action_modal_title');
-        //actionElTitle.innerText = "Seat: "+this.getName();
 
         seat = this;
         actionModal.open();
@@ -368,8 +362,6 @@ function initActionMenu(seatFactory) {
 
     var actionBtnClicked = function(e) {
 
-        // this is not a real action, it should just show modal
-        // real action button is inside modal
         if (this.dataset.action == 'assign-modal') {
             var assignModal = initAssignedSeatsModal(seat);
             document.getElementById('assigned_seat_chips').focus();
@@ -464,18 +456,18 @@ function initActionMenu(seatFactory) {
     return actionModal;
 }
 
-// preserves states across pages
+
 function initDateSelectorStorage() {
 
     var storage = window.sessionStorage;
 
-    // restore values from session storage
+
     var restoredSelections = storage.getItem('zoneSelections');
     restoredSelections = restoredSelections? JSON.parse(restoredSelections): window.warpGlobals['defaultSelectedDates'];
 
-    let cleanCBSelections = []; // used to clean up the list of checkboxes doesn't exist anymore
+    let cleanCBSelections = []; 
 
-    // if nothing is selected, let's force default selection, hence 2 tries
+
     for (let i = 0; i < 2; ++i) {
 
         for (let cb of document.getElementsByClassName('date_checkbox')) {
@@ -541,7 +533,7 @@ function initShiftSelectDates() {
 
         if (e.shiftKey)
         {
-            var targetState = this.checked; // materialize has already changed the state
+            var targetState = this.checked;
             var minValue  = Math.min( parseInt(this.value), lastSelectedValue);
             var maxValue  = Math.max( parseInt(this.value), lastSelectedValue);
 
@@ -556,7 +548,7 @@ function initShiftSelectDates() {
 
             }
 
-            // we should not call preventDefault() as this checkbox must be switched as well (and 'change' event dispatched)
+            
         }
 
         lastSelectedValue = parseInt(this.value);

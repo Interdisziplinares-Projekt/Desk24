@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     var table = new Tabulator("#groupsTable", {
-        height: "3000px",   //this will be limited by maxHeight, we need to provide height
-        maxHeight:"100%",   //to make paginationSize work correctly
+        height: "3000px",  
+        maxHeight:"100%",   
         langs: warpGlobals.i18n.tabulatorLangs,
         ajaxURL: window.warpGlobals.URLs['usersList'],
         index:"login",
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             {column:"name", dir:"asc"}
         ],
         initialFilter: [
-            {field:"account_type", type:">=", value:100}     // show groups only
+            {field:"account_type", type:">=", value:100}     
         ]
     });
 
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 let actionData = {
                     login: loginEl.value,
                     name: nameEl.value,
-                    account_type: 100,  // group
+                    account_type: 100,  
                     action: action
                 };
 
