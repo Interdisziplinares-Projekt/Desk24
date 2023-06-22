@@ -183,48 +183,47 @@ Um eine einheitliche Softwareentwicklungsmethode aus dem agilen Bereich zu verwe
 
 - static: Ein Verzeichnis, das statische Dateien für das Frontend enthält.
 
-dist: Ein Verzeichnis, das kompilierte oder generierte statische Dateien enthält.
+- dist: Ein Verzeichnis, das kompilierte oder generierte statische Dateien enthält.
 
-i18n: Ein Verzeichnis, das Übersetzungsdateien für verschiedene Sprachen enthält.
+- i18n: Ein Verzeichnis, das Übersetzungsdateien für verschiedene Sprachen enthält.
 
-images: Ein Verzeichnis, das Bilder für das Frontend enthält.
+- images: Ein Verzeichnis, das Bilder für das Frontend enthält.
 
-material_icons: Ein Verzeichnis, das Material Icons und zugehörige CSS-Dateien enthält.
+- material_icons: Ein Verzeichnis, das Material Icons und zugehörige CSS-Dateien enthält.
 
-materialize: Ein Verzeichnis, das die Materialize CSS-Bibliothek enthält.
+- materialize: Ein Verzeichnis, das die Materialize CSS-Bibliothek enthält.
 
-templates: Ein Verzeichnis, das Vorlagendateien für das Frontend enthält.
+- templates: Ein Verzeichnis, das Vorlagendateien für das Frontend enthält.
 
+- xhr: Ein Verzeichnis, das Dateien für AJAX-Anfragen (XMLHttpRequest) enthält.
 
-xhr: Ein Verzeichnis, das Dateien für AJAX-Anfragen (XMLHttpRequest) enthält.
+- Dockerfile: Eine Datei, die Anweisungen zum Erstellen eines Docker-Images für das Projekt enthält.
 
-Dockerfile: Eine Datei, die Anweisungen zum Erstellen eines Docker-Images für das Projekt enthält.
+- js: Ein Verzeichnis, das JavaScript-Quellcode für das Frontend enthält.
 
-js: Ein Verzeichnis, das JavaScript-Quellcode für das Frontend enthält.
+- base: Ein Verzeichnis, das Basis-JavaScript-Dateien und Stildefinitionen enthält.
 
-base: Ein Verzeichnis, das Basis-JavaScript-Dateien und Stildefinitionen enthält.
+- views: Ein Verzeichnis, das JavaScript-Dateien für verschiedene Seiten des Frontends enthält.
 
-views: Ein Verzeichnis, das JavaScript-Dateien für verschiedene Seiten des Frontends enthält.
+- package.json und package-lock.json: Dateien, die Abhängigkeiten und Konfigurationen für den Node.js-Paketmanager (npm) enthalten.
 
-package.json und package-lock.json: Dateien, die Abhängigkeiten und Konfigurationen für den Node.js-Paketmanager (npm) enthalten.
+- webpack.config.js: Eine Dateidie ,die Konfiguration für den Webpack-Bundler enthält.
 
-webpack.config.js: Eine Dateidie ,die Konfiguration für den Webpack-Bundler enthält.
+- LICENSE: Eine Lizenzdatei, die die Bedingungen für die Nutzung des Projekts angibt.
 
-LICENSE: Eine Lizenzdatei, die die Bedingungen für die Nutzung des Projekts angibt.
+- MANIFEST.in: Eine Datei, die verwendet wird, um zusätzliche Dateien in ein Python-Paket einzuschließen.
 
-MANIFEST.in: Eine Datei, die verwendet wird, um zusätzliche Dateien in ein Python-Paket einzuschließen.
+- requirements.txt: Eine Datei, die die erforderlichen Python-Pakete und -Versionen für das Projekt auflistet.
 
-requirements.txt: Eine Datei, die die erforderlichen Python-Pakete und -Versionen für das Projekt auflistet.
+- res: Ein Verzeichnis, das verschiedene Ressourcen für das Projekt enthält.
 
-res: Ein Verzeichnis, das verschiedene Ressourcen für das Projekt enthält.
+- assets: Ein Verzeichnis, das Assets wie Bilder oder Dokumentationen enthält.
 
-assets: Ein Verzeichnis, das Assets wie Bilder oder Dokumentationen enthält.
+- desk24_uwsgi.ini: Eine INI-Konfigurationsdatei für den uWSGI-Server.
 
-desk24_uwsgi.ini: Eine INI-Konfigurationsdatei für den uWSGI-Server.
+- nginx.conf: Eine Konfigurationsdatei für den NGINX-Webserver.
 
-nginx.conf: Eine Konfigurationsdatei für den NGINX-Webserver.
-
-setup.py: Eine Datei, die normalerweise verwendet wird, um Informationen zum Projekt und den Installationsanweisungen anzugeben.
+- setup.py: Eine Datei, die normalerweise verwendet wird, um Informationen zum Projekt und den Installationsanweisungen anzugeben.
 
 
 ```bash
