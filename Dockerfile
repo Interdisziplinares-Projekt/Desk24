@@ -2,7 +2,7 @@ FROM python:3-slim AS compile-image
 
 ENV NODE_VER=16.3.0
 
-WORKDIR /opt/Desk24
+WORKDIR /opt/desk24
 RUN apt-get update
 RUN mkdir debs && \
     apt-get install -y -d --no-install-recommends libpq5 mime-support && \
@@ -18,7 +18,7 @@ RUN apt-get install -y build-essential libpq-dev libpcre3 libpcre3-dev
 RUN pip install --upgrade setuptools && pip install wheel uwsgi
 RUN pip wheel -w wheel/ uwsgi
 
-WORKDIR /opt/Desk24/js/
+WORKDIR /opt/desk24/js/
 # first we install webpack dependencies as it takes the longest time
 COPY js/package.json js/package-lock.json ./
 RUN npm ci
@@ -28,7 +28,7 @@ COPY js/ ./
 RUN npm run build
 
 # then Desk24 dependencies
-WORKDIR /opt/Desk24
+WORKDIR /opt/desk24
 COPY requirements.txt ./
 RUN pip wheel -w wheel -r requirements.txt
 
@@ -38,22 +38,25 @@ COPY setup.py MANIFEST.in ./
 RUN python setup.py bdist_wheel -d wheel
 
 FROM python:3-slim
-WORKDIR /opt/Desk24
+WORKDIR /opt/desk24
 
 RUN \
-    --mount=type=bind,from=compile-image,source=/opt/Desk24/debs,target=./debs \
+    --mount=type=bind,from=compile-image,source=/opt/desk24/debs,target=./debs \
     dpkg -i debs/*.deb
 # COPY --from=compile-image /opt/Desk24/debs ./debs
 # RUN dpkg -i debs/*.deb
 
 RUN \
-    --mount=type=bind,from=compile-image,source=/opt/Desk24/wheel,target=./wheel \
+    --mount=type=bind,from=compile-image,source=/opt/desk24/wheel,target=./wheel \
     pip install --no-index wheel/*.whl
 # COPY --from=compile-image /opt/Desk24/wheel ./wheel
 # RUN pip install --no-index wheel/*.whl
 
-COPY --from=compile-image /opt/Desk24/desk24/static ./static
+COPY --from=compile-image /opt/desk24/desk24/static ./static
 COPY res/desk24_uwsgi.ini .
+
+# Install libpcre3 runtime library
+RUN apt-get update && apt-get install -y libpcre3
 
 EXPOSE 8000/tcp
 ENTRYPOINT ["uwsgi", "desk24_uwsgi.ini"]
