@@ -154,7 +154,6 @@ Erstellen Sie einen Fork des Repositories, indem Sie auf den "Fork" Button oben 
 Klonen Sie nun das geforkte Repository auf Ihren lokalen Computer, indem Sie den folgenden Befehl in Ihrem Terminal oder Ihrer Eingabeaufforderung ausführen:
 
 ```bash
-Copy code
 git clone <URL Ihres geforkten Repositories>
 ```
 Ersetzen Sie <URL Ihres geforkten Repositories> durch den URL-Link zu Ihrem geforkten Repository.
