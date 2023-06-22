@@ -1,38 +1,91 @@
-# Desk24
-## Deployment
+# Einführung
+Desk24 ist eine intuitive Webanwendung, die es Ihren Mitarbeitern ermöglicht, Tische und Sitzplätze ohne umfangreiches Vorwissen zu buchen. Mit Desk24 können Benutzer einfach einen Tisch für einen bestimmten Tag und Zeitraum reservieren, alle Buchungen einsehen, bei Bedarf stornieren und Feedback zu den Sitzplätzen geben. Als Administrator haben Sie die Möglichkeit, alle Buchungen einzusehen, eine umfassende Statistik zu generieren und neue Zonen anzulegen, die beispielsweise als Stockwerke betrachtet werden können.
 
-Bei der ersten Ausführung auf einer leeren Datenbank wird WARP das Datenbankschema erstellen und einen Administratorbenutzer erstellen.
+Desk24 bietet eine benutzerfreundliche Oberfläche, die es Ihren Mitarbeitern ermöglicht, bequem auf die verfügbaren Sitzplätze zuzugreifen und diese zu reservieren. Es erfordert kein umfangreiches technisches Know-how, sodass Ihre Mitarbeiter schnell und einfach mit der Buchung von Tischen und Sitzplätzen beginnen können.
 
-Die Standardadministratorzugangsdaten sind: admin:noneshallpass
+Als Administrator haben Sie die Kontrolle über das gesamte System. Sie können alle Buchungen einsehen und verwalten, um sicherzustellen, dass alles reibungslos abläuft. Desk24 ermöglicht es Ihnen auch, benutzerdefinierte Zonen einzurichten, die den verschiedenen Bereichen Ihres Unternehmens entsprechen. Dies kann nützlich sein, um beispielsweise verschiedene Stockwerke, Abteilungen oder Teams zu repräsentieren.
 
-## Schnellstart der Demo
+Desk24 bietet außerdem umfassende Analysemöglichkeiten. Als Administrator können Sie Statistiken generieren, um Einblicke in die Auslastung der Sitzplätze, beliebte Buchungszeiten oder andere relevante Metriken zu erhalten. Diese Informationen können dabei helfen, Ressourcen effizienter zu nutzen und die Arbeitsumgebung für Ihre Mitarbeiter zu optimieren.
 
-Die bevorzugte Methode zur Bereitstellung besteht darin, sie über Docker auszuführen. Sie benötigen ein funktionierendes Docker, und ich werde hier nicht darauf eingehen.
+Mit Desk24 können Sie den Buchungsprozess vereinfachen, die Transparenz verbessern und die Nutzung der verfügbaren Sitzplätze maximieren. Ganz gleich, ob es sich um ein Büro, ein Coworking-Space oder eine öffentliche Einrichtung handelt, Desk24 ist die ideale Lösung, um Ihre Arbeitsplatzbuchungen effizient zu verwalten und das Nutzererlebnis zu verbessern.
 
-### docker compose
+# Installation
 
-Terminal: 
+### Ubuntu
+```bash
+#Docker installation
+sudo apt-get update
+
+sudo apt-get install ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
 ``` bash
 
 git clone https://github.com/Interdisziplinares-Projekt/Desk24.git
-cd warp
-(sudo )docker compose -f demo_compose.yaml up
+cd desk24
+(sudo) docker compose -f demo_compose.yaml up
 ```
 
-Danach öffnen Sie http://127.0.0.1:80 in Ihrem Browser und melden sich als admin mit dem Passwort noneshallpass an.
 
-### Entwicklung
+### Windows
+Um unter Windows Docker Desktop zum laufen zu bekommen folgen sie bitte der Anleitung unter diesem link [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/)
 
-Sie benötigen eine funktionierende Python3-Umgebung, Node.js und PostgreSQL.
-
-Von der Befehlszeile aus:
-
-Einrichten von PostgreSQL unter Ubuntu
+```powershell
+git clone https://github.com/Interdisziplinares-Projekt/Desk24.git
+cd desk24
+docker compose -f demo_compose.yaml up
 ```
-# Installation
-sudo apt-get update
 
-sudo apt-get install postgresql
+### Mac
+Für die Installation von Docker Desktop folgenden sie bitte dieser Anleitung [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)
+
+```terminal
+git clone https://github.com/Interdisziplinares-Projekt/Desk24.git
+cd desk24
+docker compose -f demo_compose.yaml up
+```
+
+
+### Login 
+Auf die Webanwendung kommen sie mit http://127.0.0.1:80 und die Login Daten für den Admin sind **Admin** und als Passwort **noneshallpass** 
+
+
+# Entwicklerinstallation
+### Ubuntu
+```bash
+#python3
+sudo apt update && sudo apt upgrade
+sudo apt install python3 python3-pip
+
+
+#nodejs, npm und nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm --version
+nvm install node
+
+node --version
+npm --version
+
+
+#postgresql
+sudo apt update && sudo apt upgrade
+sudo apt install postgresql
 
 sudo systemctl status postgresql
 
@@ -49,42 +102,36 @@ GRANT ALL PRIVILEGES ON DATABASE warp TO warp;
 psql -U warp -d warp -h localhost -p 5432
 ```
 
-```bash 
-# clone repo
-git clone https://github.com/sebo-b/warp.git
-cd warp
+```bash
+git clone https://github.com/Interdisziplinares-Projekt/Desk24.git
+cd desk24
 
-# create virtual envirnoment and activate it
-python3 -m venv --prompt warp .venv
-source .venv/bin/activate
+pip3 install -r requirements.txt
 
-# install python requirements
-pip install -r requirements.txt
 
-# compile JavaScript files
 pushd js
 npm ci
 npm run build
 popd
 
-# setup Flask and database URL
 export FLASK_APP=desk24
 export FLASK_ENV=development
-export WARP_DATABASE=postgresql://warp:warp@localhost:5432/warp
 
-$ flask run
+flask run
 ```
 
-Danach öffnen Sie http://127.0.0.1:5000 in Ihrem Browser und melden sich als admin mit dem Passwort noneshallpass an.
+
+### Zugriff ohne Installation
+Da wir niemanden zwingen möchten, Docker zu installieren, und die Installation für Entwickler ebenfalls etwas komplexer ist, haben wir in Absprache mit dem Fachschaftsrat einen Raspberry Pi an der Jade HS installiert. Auf diesem Raspberry Pi läuft die Serverseite der Anwendung. Das bedeutet, dass Sie über folgenden Link [Desk24]() auf die Webseite zugreifen können, solange Sie sich in der Jade HS befinden oder über VPN mit der Jade HS verbunden sind.
 
 
-
-### Bekannte Probleme
+# Fehlerbehebung
 Falls die .env-Variable im Code keinen Wert findet, kann dies daran liegen, dass Flask in einer zu neuen Version vorliegt und Node nicht aktuell genug ist.
 ```bash
 node --version
 flask --version
 ```
+
 Wenn diese Befehle zeigen, dass Node unter 14.0 und Flask 2.3 ist, müssen einige Anpassungen vorgenommen werden:
 
 ```bash
@@ -94,10 +141,6 @@ nvm install {latest-lts-version}
 
 (sudo) pip uninstall flask
 pip install flask==2.2
-```
-
-
-
 
 
 
