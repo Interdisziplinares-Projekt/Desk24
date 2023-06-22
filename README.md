@@ -142,5 +142,33 @@ nvm install {latest-lts-version}
 (sudo) pip uninstall flask
 pip install flask==2.2
 
+```
 
 
+
+# Entwicklung
+Um am Projekt Desk24 mitzuwirken, bitten wir Sie, wie folgt vorzugehen:
+
+Erstellen Sie einen Fork des Repositories, indem Sie auf den "Fork" Button oben rechts auf der GitHub-Seite klicken. Dadurch wird eine Kopie des Repositories in Ihrem eigenen GitHub-Account erstellt.
+
+Klonen Sie nun das geforkte Repository auf Ihren lokalen Computer, indem Sie den folgenden Befehl in Ihrem Terminal oder Ihrer Eingabeaufforderung ausführen:
+
+```bash
+Copy code
+git clone <URL Ihres geforkten Repositories>
+```
+Ersetzen Sie <URL Ihres geforkten Repositories> durch den URL-Link zu Ihrem geforkten Repository.
+
+Fügen Sie Ihre Änderungen zu Ihrem lokalen Repository hinzu und führen Sie die entsprechenden Git-Befehle aus, um Ihre Änderungen zu commiten und zu pushen. Dies kann beispielsweise die Aktualisierung von Code, das Hinzufügen neuer Funktionen oder das Beheben von Fehlern beinhalten.
+
+Öffnen Sie einen neuen Pull Request (PR), um Ihre Änderungen in das ursprüngliche Projekt einzubringen. Gehen Sie dazu auf die GitHub-Seite Ihres geforkten Repositories, klicken Sie auf den "Pull Request" Button und folgen Sie den Anweisungen, um den PR zu erstellen.
+
+Wir werden Ihre Änderungen überprüfen und in das Hauptprojekt integrieren, sofern sie den Anforderungen und Richtlinien entsprechen.
+
+Vielen Dank für Ihre Mitwirkung am Desk24-Projekt!
+
+
+# Feature Driven Development (FDD)
+Um eine einheitliche Softwareentwicklungsmethode aus dem agilen Bereich zu verwenden, haben wir uns für das Feature Driven Development (FDD) entschieden. Das Feature Driven Development ist eine agile Softwareentwicklungsmethode, die sich auf die iterative und inkrementelle Entwicklung von Software konzentriert. Sie legt einen starken Fokus auf die Definition und Umsetzung von Features, die einen messbaren Mehrwert für den Benutzer bieten.
+
+![Git Graph](./res/assets/git_graph.png)
