@@ -9,6 +9,9 @@ Desk24 bietet außerdem umfassende Analysemöglichkeiten. Als Administrator kön
 
 Mit Desk24 können Sie den Buchungsprozess vereinfachen, die Transparenz verbessern und die Nutzung der verfügbaren Sitzplätze maximieren. Ganz gleich, ob es sich um ein Büro, ein Coworking-Space oder eine öffentliche Einrichtung handelt, Desk24 ist die ideale Lösung, um Ihre Arbeitsplatzbuchungen effizient zu verwalten und das Nutzererlebnis zu verbessern.
 
+# Prerelease
+Wir haben selbstverständlich ein Prerelease auf Github veröffentlich über welches man immer sich immer wieder die Desk24 v2.0 Version herunterladen, testen und verwenden kann der link dafür ist [hier](https://github.com/Interdisziplinares-Projekt/Desk24/releases/tag/v2.0)
+
 # Installation
 
 ### Ubuntu
@@ -123,6 +126,7 @@ flask run
 
 ### Zugriff ohne Installation
 Da wir niemanden zwingen möchten, Docker zu installieren, und die Installation für Entwickler ebenfalls etwas komplexer ist, haben wir in Absprache mit dem Fachschaftsrat einen Raspberry Pi an der Jade HS installiert. Auf diesem Raspberry Pi läuft die Serverseite der Anwendung. Das bedeutet, dass Sie über folgenden Link [Desk24]() auf die Webseite zugreifen können, solange Sie sich in der Jade HS befinden oder über VPN mit der Jade HS verbunden sind.
+
 
 
 # Fehlerbehebung
