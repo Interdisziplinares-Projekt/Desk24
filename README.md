@@ -125,7 +125,7 @@ flask run
 
 
 ### Zugriff ohne Installation
-Da wir niemanden zwingen möchten, Docker zu installieren, und die Installation für Entwickler ebenfalls etwas komplexer ist, haben wir in Absprache mit dem Fachschaftsrat einen Raspberry Pi an der Jade HS installiert. Auf diesem Raspberry Pi läuft die Serverseite der Anwendung. Das bedeutet, dass Sie über folgenden Link [Desk24]() auf die Webseite zugreifen können, solange Sie sich in der Jade HS befinden oder über VPN mit der Jade HS verbunden sind.
+Da wir niemanden zwingen möchten, Docker zu installieren, und die Installation für Entwickler ebenfalls etwas komplexer ist, haben wir in Absprache mit dem Fachschaftsrat einen Raspberry Pi an der Jade HS installiert. Auf diesem Raspberry Pi läuft die Serverseite der Anwendung. Das bedeutet, dass Sie über folgenden Link [Desk24](139.13.192.219:8080) auf die Webseite zugreifen können, solange Sie sich in der Jade HS befinden oder über VPN mit der Jade HS verbunden sind.
 
 
 
